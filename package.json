@@ -1,0 +1,15 @@
+{
+  "name": "sprtwrk",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "run": "node ./build/index.js",
+    "tsc": "./node_modules/.bin/tsc"
+  },
+  "author": "Chris Peters <bildepunkt@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^2.2.1"
+  }
+}
