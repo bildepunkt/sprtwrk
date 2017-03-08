@@ -7,7 +7,7 @@ interface Person {
 
 function greeter (person: Person) {
   var foo = new Foo("baz");
-  return "Hello " + person.fname + " "  + person.lname;
+  return "Hello " + person.fname + " "  + person.lname + ". Also: " + foo.getBar();
 }
 
 console.log(
