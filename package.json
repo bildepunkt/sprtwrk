@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "tsc": "./node_modules/typescript/bin/tsc",
-    "test": "./node_modules/mocha/bin/mocha"
+    "clean": "rm -rf ./build/ && rm -rf ./play/build/",
+    "test": "./node_modules/mocha/bin/mocha",
+    "tsc": "./node_modules/typescript/bin/tsc"
   },
   "author": "Chris Peters <bildepunkt@gmail.com>",
   "license": "ISC",

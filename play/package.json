@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "webpack": "./node_modules/webpack/bin/webpack.js",
+    "webpack:watch": "./node_modules/webpack/bin/webpack.js --watch"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.1.6",
+    "ts-loader": "^2.0.1",
+    "webpack": "^2.2.1"
+  }
+}
