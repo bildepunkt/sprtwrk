@@ -2,19 +2,23 @@
  * @class Tree
  */
 export default class Tree {
+  /**
+   * @private
+   * @member {Array} items
+   */
   private items: Array<any>;
 
   /**
-   * 
-   * @param items 
+   * @constructor
+   * @param {Array<any>} items
    */
   constructor (...items: Array<any>) {
     this.items = items;
   }
 
   /**
-   * 
-   * @param item 
+   * @private
+   * @param {Display} item
    */
   private getIndex (item): number {
     for (var index = 0, len = this.items.length; index < len; index++) {
@@ -31,16 +35,14 @@ export default class Tree {
   }
 
   /**
-   * 
-   * @param items 
+   * @param {Array<any>} items
    */
   public add (...items) {
     this.items.push(...items);
   }
 
   /**
-   * 
-   * @param items 
+   * @param {Array<any>} items
    */
   public remove (...items) {
     items.forEach(element => {
