@@ -1,53 +1,39 @@
+import Layer from "./Layer";
+
 /**
  * @class Tree
  */
 export default class Tree {
   /**
    * @private
-   * @member {Array} items
+   * @property {string} Tree#_bgColor
    */
-  private items: Array<any>;
+  private _bgColor : string;  
+  /**
+   * @private
+   * @member {Array<Layer>} Tree#layers
+   */
+  private _layers : Array<Layer>;
 
   /**
    * @constructor
-   * @param {Array<any>} items
+   * @param {string} bgColor
+   * @param {Array<Layer>} layers
    */
-  constructor (...items: Array<any>) {
-    this.items = items;
+  constructor (bgColor : string, ...layers : Array<Layer>) {
+    this.bgColor = bgColor;
+    this._layers = layers;
   }
 
-  /**
-   * @private
-   * @param {Display} item
-   */
-  private getIndex (item): number {
-    for (var index = 0, len = this.items.length; index < len; index++) {
-      const element = this.items[index];
-
-      if (Array.isArray(element)) {
-        this.getIndex(element);
-      } else {
-        if (item.uid === element.uid) {
-          return index;
-        }
-      }
-    }
+  public get layers () : Array<Layer> {
+    return this._layers;
   }
 
-  /**
-   * @param {Array<any>} items
-   */
-  public add (...items) {
-    this.items.push(...items);
+  public get bgColor () : string {
+    return this._bgColor;
   }
 
-  /**
-   * @param {Array<any>} items
-   */
-  public remove (...items) {
-    items.forEach(element => {
-      const removeeIndex = this.getIndex(element);
-      this.items.splice(removeeIndex, 1);
-    });
+  public set bgColor (v : string) {
+    this._bgColor = v;
   }
 }
