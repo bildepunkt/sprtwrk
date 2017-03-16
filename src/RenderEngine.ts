@@ -45,13 +45,13 @@ export default class RenderEngine {
 
     this.clear(tree.bgColor);
 
-    for (const layer in tree.layers) {
+    for (let layer of tree.layers) {
       if (layer.canCache) {
         if (layer.isDirty) {
           layer.imageData = this.getImageDataFromLayer(layer);
         }
-  
-        context.drawImage(layer.imageData, 0, 0);
+
+        context.putImageData(layer.imageData, 0, 0);
       } else {
         for (const item of layer.items) {
           context.save();
@@ -73,7 +73,7 @@ export default class RenderEngine {
 
     bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
 
-    for (const item of layer.getItems()) {
+    for (const item of layer.items()) {
       bufferContext.save();
       item.render(bufferContext);
       bufferContext.restore();

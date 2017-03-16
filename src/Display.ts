@@ -31,6 +31,13 @@ export default class Display {
     this._uid = Display._uidCounter++;
   }
 
+  /**
+   * @method Display#render
+   */
+  public render (context : CanvasRenderingContext2D) {
+    //
+  }
+
   public get uid () : number {
     return this._uid;
   }

@@ -87,6 +87,10 @@ export default class Layer {
     return this._imageData;
   }
 
+  public set imageData (v : ImageData) {
+    this._imageData = v;
+  }
+
   public get items () : Array<Display> {
     return this._items;
   }
