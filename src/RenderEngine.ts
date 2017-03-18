@@ -1,7 +1,10 @@
+import Layer from "Layer";
 import Tree from "./Tree";
 
 /**
  * @interface Viewport
+ * @property {HTMLCanvasElement} Viewport#canvas - the canvas HTMLCanvasElement
+ * @property {CanvasRenderingContext2D} Viewport#context - the canvas render context
  */
 interface Viewport {
   canvas: HTMLCanvasElement,
@@ -12,21 +15,29 @@ interface Viewport {
  * @class RenderEngine
  */
 export default class RenderEngine {
-  private viewport: Viewport;
-  private bufferViewport: Viewport;
+  /**
+   * @private
+   * @property {Viewport} RenderEngine#_viewport - the display viewport
+   */
+  private _viewport: Viewport;
+  /**
+   * @private
+   * @property {Viewport} RenderEngine#_bufferViewport - the buffer viewport
+   */
+  private _bufferViewport: Viewport;
 
   constructor(viewport: Viewport, bufferViewport: Viewport) {
-    this.viewport = viewport;
-    this.bufferViewport = bufferViewport;
+    this._viewport = viewport;
+    this._bufferViewport = bufferViewport;
   }
 
   /**
    * @method RenderEngine#clear
    * @param {string} bgColor
    */
-  public clear(bgColor) : void {
-    const canvas = this.viewport.canvas;
-    const context = this.viewport.context;
+  public clear(bgColor): void {
+    const canvas: HTMLCanvasElement = this._viewport.canvas;
+    const context: CanvasRenderingContext2D = this._viewport.context;
 
     if (bgColor) {
       context.fillStyle = bgColor;
@@ -40,8 +51,8 @@ export default class RenderEngine {
    * @method RenderEngine#render
    * @param {Tree} tree
    */
-  public render (tree: Tree) : void {
-    const context = this.viewport.context;
+  public render (tree: Tree): void {
+    const context: CanvasRenderingContext2D = this._viewport.context;
 
     this.clear(tree.bgColor);
 
@@ -67,13 +78,13 @@ export default class RenderEngine {
    * @param {Layer} layer
    * @returns {ImageData} the layer's image data
    */
-  public getImageDataFromLayer(layer) : ImageData {
-    const bufferCanvas = this.bufferViewport.canvas;
-    const bufferContext = this.bufferViewport.context;
+  public getImageDataFromLayer(layer: Layer): ImageData {
+    const bufferCanvas: HTMLCanvasElement = this._bufferViewport.canvas;
+    const bufferContext: CanvasRenderingContext2D = this._bufferViewport.context;
 
     bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
 
-    for (const item of layer.items()) {
+    for (const item of layer.items) {
       bufferContext.save();
       item.render(bufferContext);
       bufferContext.restore();

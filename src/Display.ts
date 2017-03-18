@@ -7,22 +7,22 @@ export default class Display {
    * @static
    * @member {number} Display#_uidCounter
    */
-  private static _uidCounter : number = 0;
+  private static _uidCounter: number = 0;
   /**
    * @private
    * @member {number} Display#_uid
    */
-  private _uid : number;
+  private _uid: number;
   /**
    * @private
    * @member {boolean} Display#_isDirty=false
    */
-  private _isDirty : boolean = false;
+  private _isDirty: boolean = false;
   /**
    * @private
    * @member {boolean} Display#_isVisible=true
    */
-  private _isVisible : boolean = true;
+  private _isVisible: boolean = true;
 
   /**
    * @constructor
@@ -34,19 +34,19 @@ export default class Display {
   /**
    * @method Display#render
    */
-  public render (context : CanvasRenderingContext2D) {
+  public render (context: CanvasRenderingContext2D) {
     //
   }
 
-  public get uid () : number {
+  public get uid (): number {
     return this._uid;
   }
 
-  public get isDirty () : boolean {
+  public get isDirty (): boolean {
     return this._isDirty;
   }
 
-  public get isVisible () : boolean {
+  public get isVisible (): boolean {
     return this._isVisible;
   }
 }
