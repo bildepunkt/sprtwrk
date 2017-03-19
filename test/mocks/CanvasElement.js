@@ -191,8 +191,12 @@ module.exports = (function () {
     this.getAttributeNodeNS = function () {};
     this.getBoundingClientRect = function () {
         return {
+            bottom: 0,
             left: 0,
-            top: 0
+            right: 0,
+            top: 0,
+            width: 0,
+            height: 0
         };
     };
     this.getClientRects = function () {};

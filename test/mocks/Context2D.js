@@ -38,7 +38,13 @@ module.exports = (function () {
     this.fillRect = function () {};
     this.fillText = function () {};
     this.getContextAttributes = function () {};
-    this.getImageData = function () {};
+    this.getImageData = function (x, y, width, height) {
+      return {
+        data: new Uint8ClampedArray([]),
+        width: width,
+        height: height
+      };
+    };
     this.getLineDash = function () {};
     this.isPointInPath = function () {};
     this.isPointInStroke = function () {};

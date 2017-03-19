@@ -88,6 +88,10 @@ export default class Layer {
     return this._canCache;
   }
 
+  public set canCache (v: boolean) {
+    this._canCache = v;
+  }
+
   public get imageData (): ImageData {
     return this._imageData;
   }

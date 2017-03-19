@@ -78,7 +78,7 @@ export default class RenderEngine {
 
     for (let layer of tree.layers) {
       if (layer.canCache) {
-        if (layer.isDirty) {
+        if (!layer.imageData || layer.isDirty()) {
           layer.imageData = this.getImageDataFromLayer(layer);
         }
 

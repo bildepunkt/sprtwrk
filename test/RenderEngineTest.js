@@ -18,7 +18,7 @@ describe("RenderEngine", function () {
     canvas = new CanvasMock();
     context = new ContextMock();
     bufferCanvas = new CanvasMock();
-    bufferContext = new CanvasMock();
+    bufferContext = new ContextMock();
 
     canvas.width = 640;
     canvas.height = 480;
@@ -65,7 +65,45 @@ describe("RenderEngine", function () {
     expect(contextRestoreSpy.calledOnce).to.be.true;
   });
 
-  xit("renders a cachable tree", function () {
+  describe("render cachable layer", function () {
+    var display, layer, tree, renderEngineGetImageDataFromLayerSpy, contextPutImageDataSpy;
 
+    beforeEach(function () {
+      display = new Display();
+      layer = new Layer(display);
+      tree = new Tree("deepblue", layer);
+      renderEngineGetImageDataFromLayerSpy = sinon.spy(renderEngine, "getImageDataFromLayer");
+      contextPutImageDataSpy = sinon.spy(context, "putImageData");
+    });
+
+    it("renders a cachable tree > layer that has no imageData and is not dirty", function () {
+      layer.canCache = true;
+      renderEngine.render(tree);
+
+      expect(renderEngineGetImageDataFromLayerSpy.calledWith(layer)).to.be.true;
+      expect(contextPutImageDataSpy.calledWith(layer.imageData, 0, 0)).to.be.true;
+    });
+
+    it("renders a cachable tree > layer that has imageData and is dirty", function () {
+      layer.canCache = true;
+      layer.imageData = {};
+      // TODO - revisit messing with this private member
+      display._isDirty = true;
+      renderEngine.render(tree);
+
+      expect(renderEngineGetImageDataFromLayerSpy.calledWith(layer)).to.be.true;
+      expect(contextPutImageDataSpy.calledWith(layer.imageData, 0, 0)).to.be.true;
+    });
+
+    it("renders a cachable tree > layer that has imageData and is not dirty", function () {
+      var specificImageData = { data: [], width: 123, height: 321 };
+
+      layer.canCache = true;
+      layer.imageData = specificImageData;
+      renderEngine.render(tree);
+
+      expect(renderEngineGetImageDataFromLayerSpy.called).to.be.false;
+      expect(contextPutImageDataSpy.calledWith(specificImageData, 0, 0)).to.be.true;
+    });
   });
 });
