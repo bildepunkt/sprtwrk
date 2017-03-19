@@ -5,23 +5,20 @@ import Display from "./Display";
  */
 export default class Layer {
   /**
-   * @private
-   * @property {boolean} Layer#_canCache=false - if true, the layer's image data is cached and rendered if no display items are dirty
+   * @property {boolean} Layer#canCache=false - if true, the layer's image data is cached and rendered if no display items are dirty
    */
   private _canCache: boolean = false;
   /**
-   * @private
-   * @property {ImageData} Layer#_imageData - the object from CanvasRenderingContext2D#getImageData (if `_canCache` is true, and no Display items are dirty)
+   * @property {ImageData} Layer#imageData - the object from CanvasRenderingContext2D#getImageData (if `_canCache` is true, and no Display items are dirty)
    */
   private _imageData: ImageData;
   /**
-   * @private
-   * @property {Array<Display>} Layer#_items=[] - the Display entities
+   * @readonly
+   * @property {Array<Display>} Layer#items=[] - the Display entities
    */
   private _items: Array<Display> = [];
   /**
-   * @private
-   * @property {Array<Display>} Layer#_receivesInput=true - if true, checks user input against Display items
+   * @property {Array<Display>} Layer#receivesInput=true - if true, checks user input against Display items
    */
   private _receivesInput: boolean = true;
 
@@ -34,8 +31,8 @@ export default class Layer {
   }
 
   /**
-   * @method Layer#getIndex
    * @private
+   * @method Layer#getIndex
    * @param {Display} item - the Display item
    */
   private _getIndex (item): number {
@@ -57,7 +54,7 @@ export default class Layer {
   }
 
   /**
-   * @method Layer#getIsDirty
+   * @method Layer#isDirty
    * @returns {boolean} - if layer is dirty
    */
   public isDirty (): boolean {
@@ -103,4 +100,13 @@ export default class Layer {
   public get items (): Array<Display> {
     return this._items;
   }
+
+  public get receivesInput (): boolean {
+    return this._receivesInput;
+  }
+
+  public set receivesInput (v: boolean) {
+    this._receivesInput = v;
+  }
+
 }

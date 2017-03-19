@@ -5,22 +5,20 @@ export default class Display {
   /**
    * @private
    * @static
-   * @member {number} Display#_uidCounter
+   * @property {number} Display#_uidCounter
    */
   private static _uidCounter: number = 0;
   /**
-   * @private
-   * @member {number} Display#_uid
+   * @readonly
+   * @property {number} Display#uid
    */
   private _uid: number;
   /**
-   * @private
-   * @member {boolean} Display#_isDirty=false
+   * @property {boolean} Display#isDirty=false
    */
   private _isDirty: boolean = false;
   /**
-   * @private
-   * @member {boolean} Display#_isVisible=true
+   * @property {boolean} Display#isVisible=true
    */
   private _isVisible: boolean = true;
 
@@ -46,7 +44,15 @@ export default class Display {
     return this._isDirty;
   }
 
+  public set isDirty (v: boolean) {
+    this._isDirty = v;
+  }
+
   public get isVisible (): boolean {
     return this._isVisible;
+  }
+
+  public set isVisible (v: boolean) {
+    this._isVisible = v;
   }
 }

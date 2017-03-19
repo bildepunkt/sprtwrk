@@ -87,8 +87,7 @@ describe("RenderEngine", function () {
     it("renders a cachable tree > layer that has imageData and is dirty", function () {
       layer.canCache = true;
       layer.imageData = {};
-      // TODO - revisit messing with this private member
-      display._isDirty = true;
+      display.isDirty = true;
       renderEngine.render(tree);
 
       expect(renderEngineGetImageDataFromLayerSpy.calledWith(layer)).to.be.true;

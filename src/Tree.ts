@@ -6,12 +6,11 @@ import Layer from "./Layer";
  */
 export default class Tree {
   /**
-   * @private
-   * @property {string} Tree#_bgColor
+   * @property {string} Tree#bgColor
    */
   private _bgColor: string;  
   /**
-   * @private
+   * @readonly
    * @property {Array<Layer>} Tree#layers
    */
   private _layers: Array<Layer>;

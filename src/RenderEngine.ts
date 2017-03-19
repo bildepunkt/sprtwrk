@@ -61,6 +61,7 @@ export default class RenderEngine {
     for (const item of layer.items) {
       bufferContext.save();
       item.render(bufferContext);
+      item.isDirty = false;
       bufferContext.restore();
     }
 
@@ -87,6 +88,7 @@ export default class RenderEngine {
         for (const item of layer.items) {
           context.save();
           item.render(context);
+          item.isDirty = false;
           context.restore();
         }
       }
