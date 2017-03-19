@@ -48,6 +48,26 @@ export default class RenderEngine {
   }
 
   /**
+   * @method RenderEngine#getImageDataFromLayer
+   * @param {Layer} layer
+   * @returns {ImageData} the layer's image data
+   */
+  public getImageDataFromLayer(layer: Layer): ImageData {
+    const bufferCanvas: HTMLCanvasElement = this._bufferViewport.canvas;
+    const bufferContext: CanvasRenderingContext2D = this._bufferViewport.context;
+
+    bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
+
+    for (const item of layer.items) {
+      bufferContext.save();
+      item.render(bufferContext);
+      bufferContext.restore();
+    }
+
+    return bufferContext.getImageData(0, 0, bufferCanvas.width, bufferCanvas.height);
+  }
+
+  /**
    * @method RenderEngine#render
    * @param {Tree} tree
    */
@@ -71,25 +91,5 @@ export default class RenderEngine {
         }
       }
     }
-  }
-
-  /**
-   * @method RenderEngine#getImageDataFromLayer
-   * @param {Layer} layer
-   * @returns {ImageData} the layer's image data
-   */
-  public getImageDataFromLayer(layer: Layer): ImageData {
-    const bufferCanvas: HTMLCanvasElement = this._bufferViewport.canvas;
-    const bufferContext: CanvasRenderingContext2D = this._bufferViewport.context;
-
-    bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
-
-    for (const item of layer.items) {
-      bufferContext.save();
-      item.render(bufferContext);
-      bufferContext.restore();
-    }
-
-    return bufferContext.getImageData(0, 0, bufferCanvas.width, bufferCanvas.height);
   }
 }
