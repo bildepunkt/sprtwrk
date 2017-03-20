@@ -59,10 +59,12 @@ export default class RenderEngine {
     bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
 
     for (const item of layer.items) {
-      bufferContext.save();
-      item.render(bufferContext);
-      item.isDirty = false;
-      bufferContext.restore();
+      if (item.isVisible) {
+        bufferContext.save();
+        item.render(bufferContext);
+        item.isDirty = false;
+        bufferContext.restore();
+      }
     }
 
     return bufferContext.getImageData(0, 0, bufferCanvas.width, bufferCanvas.height);
@@ -86,10 +88,12 @@ export default class RenderEngine {
         context.putImageData(layer.imageData, 0, 0);
       } else {
         for (const item of layer.items) {
-          context.save();
-          item.render(context);
-          item.isDirty = false;
-          context.restore();
+          if (item.isVisible) {
+            context.save();
+            item.render(context);
+            item.isDirty = false;
+            context.restore();
+          }
         }
       }
     }
