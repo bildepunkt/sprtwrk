@@ -20,6 +20,7 @@ module.exports = (function () {
     this.textAlign = "start";
     this.textBaseline = "alphabetic";
     this.webkitImageSmoothingEnabled = true;
+
     this.arc = function () {};
     this.arcTo = function () {};
     this.beginPath = function () {};

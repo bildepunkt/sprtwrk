@@ -26,11 +26,10 @@ describe("RenderEngine", function () {
     bufferCanvas.height = 480;
 
     renderEngine = new RenderEngine({
-      canvas: canvas,
-      context: context
-    }, {
-      canvas: bufferCanvas,
-      context: bufferContext
+      viewCanvas: canvas,
+      viewContext: context,
+      bufferCanvas: bufferCanvas,
+      bufferContext: bufferContext
     });
   });
 

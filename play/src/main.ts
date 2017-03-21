@@ -2,11 +2,9 @@ import RenderEngine from "../../src/RenderEngine";
 import Tree from "../../src/Tree";
 import Layer from "../../src/Layer";
 import Display from "../../src/Display";
+import Viewport from "../../src/Viewport";
 
-const WIDTH = 800;
-const HEIGHT = 600;
-
-const viewport = new Viewport(WIDTH, HEIGHT);
+const viewport = new Viewport();
 const player = new Display();
 const layer = new Layer(player);
 const tree = new Tree("#ccc", layer);

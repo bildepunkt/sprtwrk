@@ -1,15 +1,6 @@
-import Layer from "Layer";
+import Layer from "./Layer";
 import Tree from "./Tree";
-
-/**
- * @interface Viewport
- * @property {HTMLCanvasElement} Viewport#canvas - the canvas HTMLCanvasElement
- * @property {CanvasRenderingContext2D} Viewport#context - the canvas render context
- */
-interface Viewport {
-  canvas: HTMLCanvasElement,
-  context: CanvasRenderingContext2D
-};
+import Viewport from "./Viewport";
 
 /**
  * @class RenderEngine
@@ -17,18 +8,30 @@ interface Viewport {
 export default class RenderEngine {
   /**
    * @private
-   * @property {Viewport} RenderEngine#_viewport - the display viewport
+   * @property {HTMLCanvasElement} RenderEngine#_viewCanvas
    */
-  private _viewport: Viewport;
+  private _viewCanvas: HTMLCanvasElement;
   /**
    * @private
-   * @property {Viewport} RenderEngine#_bufferViewport - the buffer viewport
+   * @property {CanvasRenderingContext2D} RenderEngine#_viewContext
    */
-  private _bufferViewport: Viewport;
+  private _viewContext: CanvasRenderingContext2D;
+  /**
+   * @private
+   * @property {HTMLCanvasElement} RenderEngine#_bufferCanvas
+   */
+  private _bufferCanvas: HTMLCanvasElement;
+  /**
+   * @private
+   * @property {CanvasRenderingContext2D} RenderEngine#_bufferContext
+   */
+  private _bufferContext: CanvasRenderingContext2D;
 
-  constructor(viewport: Viewport, bufferViewport: Viewport) {
-    this._viewport = viewport;
-    this._bufferViewport = bufferViewport;
+  constructor(viewport: Viewport) {
+    this._viewCanvas = viewport.viewCanvas;
+    this._viewContext = viewport.viewContext;
+    this._bufferCanvas = viewport.bufferCanvas;
+    this._bufferContext = viewport.bufferContext;
   }
 
   /**
@@ -36,8 +39,8 @@ export default class RenderEngine {
    * @param {string} bgColor
    */
   public clear(bgColor): void {
-    const canvas: HTMLCanvasElement = this._viewport.canvas;
-    const context: CanvasRenderingContext2D = this._viewport.context;
+    const canvas: HTMLCanvasElement = this._viewCanvas;
+    const context: CanvasRenderingContext2D = this._viewContext;
 
     if (bgColor) {
       context.fillStyle = bgColor;
@@ -53,8 +56,8 @@ export default class RenderEngine {
    * @returns {ImageData} the layer's image data
    */
   public getImageDataFromLayer(layer: Layer): ImageData {
-    const bufferCanvas: HTMLCanvasElement = this._bufferViewport.canvas;
-    const bufferContext: CanvasRenderingContext2D = this._bufferViewport.context;
+    const bufferCanvas: HTMLCanvasElement = this._bufferCanvas;
+    const bufferContext: CanvasRenderingContext2D = this._bufferContext;
 
     bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
 
@@ -75,7 +78,7 @@ export default class RenderEngine {
    * @param {Tree} tree
    */
   public render (tree: Tree): void {
-    const context: CanvasRenderingContext2D = this._viewport.context;
+    const context: CanvasRenderingContext2D = this._viewContext;
 
     this.clear(tree.bgColor);
 
