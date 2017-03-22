@@ -2,8 +2,8 @@ var RenderEngine = require("../build/RenderEngine").default;
 var Tree = require("../build/Tree").default;
 var Layer = require("../build/Layer").default;
 var Display = require("../build/Display").default;
-var CanvasMock = require("./mocks/CanvasElement");
-var ContextMock = require("./mocks/Context2D");
+var DomElement = require("./mocks/DomElement");
+var Context = require("./mocks/Context2D");
 var chai = require("chai");
 var sinon = require("sinon");
 var sinonChai = require("sinon-chai");
@@ -15,10 +15,10 @@ describe("RenderEngine", function () {
   var canvas, context, bufferCanvas, bufferContext, renderEngine;
 
   beforeEach(function () {
-    canvas = new CanvasMock();
-    context = new ContextMock();
-    bufferCanvas = new CanvasMock();
-    bufferContext = new ContextMock();
+    canvas = new DomElement("canvas");
+    context = new Context();
+    bufferCanvas = new DomElement("canvas");
+    bufferContext = new Context();
 
     canvas.width = 640;
     canvas.height = 480;
