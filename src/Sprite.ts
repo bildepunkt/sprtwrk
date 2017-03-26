@@ -1,3 +1,5 @@
+import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
+
 export default class Sprite {
   
   private alpha : number = 1;
@@ -15,7 +17,7 @@ export default class Sprite {
     this.uid = Sprite.uidCounter++;
   }
 
-  public render (context: CanvasRenderingContext2D): void {
+  public render (context: CanvasRenderingContext2D | CanvasRenderingContext2DMock): void {
     //
   }
   

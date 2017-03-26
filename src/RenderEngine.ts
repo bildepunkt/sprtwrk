@@ -1,18 +1,20 @@
 import Tree from "./Tree";
+import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
+import HTMLCanvasElementMock from "../test/mocks/HTMLCanvasElementMock";
 
 export default class RenderEngine {
   
-  private canvas: HTMLCanvasElement;
-  private context: CanvasRenderingContext2D;
+  private canvas: HTMLCanvasElement | HTMLCanvasElementMock;
+  private context: CanvasRenderingContext2D | CanvasRenderingContext2DMock;
 
-  constructor (canvas: HTMLCanvasElement) {
+  constructor (canvas: HTMLCanvasElement | HTMLCanvasElementMock, context: CanvasRenderingContext2D | CanvasRenderingContext2DMock) {
     this.canvas = canvas;
-    this.context = canvas.getContext("2d");
+    this.context = context;
   }
 
-  public clear(bgColor): void {
-    const canvas: HTMLCanvasElement = this.canvas;
-    const context: CanvasRenderingContext2D = this.context;
+  public clear(bgColor?: string): void {
+    const canvas: HTMLCanvasElement | HTMLCanvasElementMock = this.canvas;
+    const context: CanvasRenderingContext2D | CanvasRenderingContext2DMock = this.context;
 
     if (bgColor) {
       context.fillStyle = bgColor;

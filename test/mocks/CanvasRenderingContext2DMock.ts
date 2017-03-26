@@ -8,7 +8,19 @@ export default class CanvasRenderingContext2DMock {
     this.canvas = canvas;
   }
 
+  public clearRect (x: number, y: number, width: number, height: number) {
+    //
+  }
+
   public fillRect (x: number, y: number, width: number, height: number) {
+    //
+  }
+
+  public restore () {
+    //
+  }
+
+  public save () {
     //
   }
 }
