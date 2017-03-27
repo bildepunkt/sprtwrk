@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./play",
+    "outDir": "./play",
+    "target": "es5",
+    "sourceMap": true
+  }
+}
