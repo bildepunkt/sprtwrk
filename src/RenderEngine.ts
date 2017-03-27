@@ -1,38 +1,31 @@
 import Tree from "./Tree";
-import Layer from "./Layer";
-import Sprite from "./Sprite";
-import { stringRepeat } from "./util";
 import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
 import HTMLCanvasElementMock from "../test/mocks/HTMLCanvasElementMock";
 
 export class RenderEngineDebugger {
 
   private doDebug: boolean;
-  private layerCount: number = 0;
 
   constructor (doDebug: boolean) {
     this.doDebug = doDebug;
   }
 
-  public render (tree): void {
+  public render (tree: Tree): void {
     if (!this.doDebug) {
       return;
     }
 
-    console.log("Tree");
-
-    for (let l = 0, len = tree.getCount(); l < len; l++) {
-      const layer = tree.getAt(l);
-      const indentation = stringRepeat("  ", l + 1);
-
-      console.log(`${indentation}Layer`);
-      for (let i = 0, len = layer.getCount(); i < len; i++) {
-        const sprite = layer.getAt(i);
-        const indentation = stringRepeat("  ", (l + 1) + (i + 1));
-
-        console.log(`${indentation}Sprite {${sprite.getUid()}} | `, sprite);
+    console.group("Tree");
+    for (const layer of tree.getLayers()) {
+      console.group("Layer");
+      for (const item of layer.getItems()) {
+        console.groupCollapsed("Sprite");
+        console.log(item);
+        console.groupEnd();
       }
+      console.groupEnd();
     }
+    console.groupEnd();
   }
 }
 
