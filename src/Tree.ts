@@ -18,6 +18,10 @@ export default class Tree {
     return this.layers.length;
   }
 
+  public getAt (i: number): Layer {
+    return this.layers[i];
+  }
+
   public getLayers (): Layer[] {
     return this.layers;
   }
