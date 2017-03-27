@@ -8,6 +8,13 @@ import { expect } from "chai";
 import { spy } from "sinon";
 import "mocha";
 
+const noop = () => {
+  // does not a thing
+};
+console.group = noop;
+console.groupEnd = noop;
+console.groupCollapsed = noop;
+
 describe("RenderEngine", () => {
   let canvas: HTMLCanvasElementMock, context: CanvasRenderingContext2DMock, renderEngine: RenderEngine;
 
@@ -16,7 +23,7 @@ describe("RenderEngine", () => {
     context = new CanvasRenderingContext2DMock(canvas);
     canvas.width = 640;
     canvas.height = 480;
-    renderEngine = new RenderEngine(canvas, context);
+    renderEngine = new RenderEngine(canvas, context, false);
   });
 
   it("renders a tree with 1 layer that contains 1 sprite", () => {
