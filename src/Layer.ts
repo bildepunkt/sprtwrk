@@ -12,7 +12,7 @@ export default class Layer {
     this.items.push(...items);
   }
 
-  public getIndex (item: Sprite): number {
+  private getIndex (item: Sprite): number {
     for (var index = 0, len = this.items.length; index < len; index++) {
       const element: Sprite = this.items[index];
 
