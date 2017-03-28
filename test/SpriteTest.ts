@@ -22,33 +22,38 @@ describe("Sprite", () => {
     expect(sprite.getIsVisible()).to.equal(true);
     expect(sprite.getX()).to.equal(0);
     expect(sprite.getY()).to.equal(0);
+    expect(sprite.getPivotX()).to.equal(0);
+    expect(sprite.getPivotY()).to.equal(0);
+    expect(sprite.getRotation()).to.equal(0);
+    expect(sprite.getScaleX()).to.equal(1);
+    expect(sprite.getScaleY()).to.equal(1);
   });
 
   it("properly interacts with, and modifies, the render context", function () {
-    var s = new Sprite();
-    var c = new CanvasRenderingContext2DMock();
+    var sprite = new Sprite();
+    var context = new CanvasRenderingContext2DMock();
 
-    s.setX(32);
-    s.setY(32);
-    s.setScaleX(2);
-    s.setScaleY(1.4);
-    s.setRotation(45);
-    s.setPivotX(16);
-    s.setPivotY(16);
-    s.setAlpha(0.2);
-    s.setBlendMode("multiply");
+    sprite.setX(32);
+    sprite.setY(32);
+    sprite.setScaleX(2);
+    sprite.setScaleY(1.4);
+    sprite.setRotation(45);
+    sprite.setPivotX(16);
+    sprite.setPivotY(16);
+    sprite.setAlpha(0.2);
+    sprite.setBlendMode("multiply");
 
-    var translateSpy = spy(c, "translate");
-    var rotateSpy = spy(c, "rotate");
-    var scaleSpy = spy(c, "scale");
+    var translateSpy = spy(context, "translate");
+    var rotateSpy = spy(context, "rotate");
+    var scaleSpy = spy(context, "scale");
 
-    s.render(c);
+    sprite.render(context);
 
     expect(translateSpy.calledTwice).to.be.true;
-    expect(translateSpy.calledWith(s.getX(), s.getY())).to.be.true;
-    expect(rotateSpy.calledWith(s.getRotation() * Math.PI / 180)).to.be.true;
-    expect(scaleSpy.calledWith(s.getScaleX(), s.getScaleY())).to.be.true;
-    expect(c.globalAlpha).to.equal(s.getAlpha());
-    expect(c.globalCompositeOperation).to.equal(s.getBlendMode());
+    expect(translateSpy.calledWith(sprite.getX(), sprite.getY())).to.be.true;
+    expect(rotateSpy.calledWith(sprite.getRotation() * Math.PI / 180)).to.be.true;
+    expect(scaleSpy.calledWith(sprite.getScaleX(), sprite.getScaleY())).to.be.true;
+    expect(context.globalAlpha).to.equal(sprite.getAlpha());
+    expect(context.globalCompositeOperation).to.equal(sprite.getBlendMode());
   });
 });

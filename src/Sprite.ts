@@ -1,27 +1,28 @@
 import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
+import { assignArgs } from "./util";
 
+/**
+ * @TODO
+ *  - add setMany(props: object)
+ */
 export default class Sprite {
 
-  private alpha : number = 1;
-  private blendMode: string = "source-over";
-  private isVisible: boolean = true;
-  private pivotX: number = 0;
-  private pivotY: number = 0;
-  private rotation: number = 0;
-  private scaleX: number = 1;
-  private scaleY: number = 1;
-  private x: number = 0;
-  private y: number = 0;
-  private uid: number;
+  protected alpha : number = 1;
+  protected blendMode: string = "source-over";
+  protected isVisible: boolean = true;
+  protected pivotX: number = 0;
+  protected pivotY: number = 0;
+  protected rotation: number = 0;
+  protected scaleX: number = 1;
+  protected scaleY: number = 1;
+  protected x: number = 0;
+  protected y: number = 0;
+  protected uid: number = null;
 
   private static uidCounter: number = 0;
 
-  constructor (x: number = 0, y: number = 0, rotation: number = 0, scaleX: number = 1, scaleY: number = 1) {
-    this.x = x;
-    this.y = y;
-    this.rotation = rotation;
-    this.scaleX = scaleX;
-    this.scaleY = scaleY;
+  constructor (args: object = {}) {
+    assignArgs(this, args);
 
     this.uid = Sprite.uidCounter++;
   }
