@@ -10,14 +10,7 @@ export default class HTMLCanvasElementMock extends HTMLElementMock {
     super(type);
   }
 
-  /**
-   * @TODO
-   *  - figure out getContext signature so we don't have to pass the context param to RenderEngine
-   */
-  public getContext (contextType: string, contextAttributes?: Canvas2DContextAttributes): CanvasRenderingContext2DMock {
-    switch (contextType) {
-      case "2d":
-        return new CanvasRenderingContext2DMock(this);
-    }
+  public getContext (contextId: "2d", contextAttributes?: Canvas2DContextAttributes): CanvasRenderingContext2D | CanvasRenderingContext2DMock {
+    return new CanvasRenderingContext2DMock();
   }
 }

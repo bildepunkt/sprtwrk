@@ -31,7 +31,6 @@ export class RenderEngineDebugger {
 
 /**
  * @TODO
- *  - figure out getContext mock signature so we don't have to pass the context param in constructor
  */
 export default class RenderEngine {
   
@@ -40,13 +39,10 @@ export default class RenderEngine {
   private doDebug: boolean = true;
   private debugger: RenderEngineDebugger;
 
-  constructor (canvas: HTMLCanvasElement | HTMLCanvasElementMock,
-               context: CanvasRenderingContext2D | CanvasRenderingContext2DMock,
-               doDebug: boolean = true) {
+  constructor (canvas: HTMLCanvasElement | HTMLCanvasElementMock, doDebug: boolean = true) {
     this.canvas = canvas;
-    this.context = context;
+    this.context = canvas.getContext("2d");
     this.doDebug = doDebug;
-
     this.debugger = new RenderEngineDebugger(this.doDebug);
   }
 
@@ -80,5 +76,9 @@ export default class RenderEngine {
     }
 
     this.context.restore();
+  }
+
+  public getContext (): CanvasRenderingContext2D | CanvasRenderingContext2DMock {
+    return this.context;
   }
 }
