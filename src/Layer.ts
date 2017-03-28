@@ -1,5 +1,9 @@
 import Sprite from "./Sprite";
 
+/**
+ * @TODO
+ *  - add listensForInput
+ */
 export default class Layer {
 
   private items: Sprite[] = [];

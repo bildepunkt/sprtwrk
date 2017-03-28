@@ -29,6 +29,10 @@ export class RenderEngineDebugger {
   }
 }
 
+/**
+ * @TODO
+ *  - figure out getContext mock signature so we don't have to pass the context param in constructor
+ */
 export default class RenderEngine {
   
   private canvas: HTMLCanvasElement | HTMLCanvasElementMock;
