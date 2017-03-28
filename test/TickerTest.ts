@@ -32,6 +32,5 @@ describe("Ticker", () => {
     ticker.start();
     manualRafTick();
     expect(cb.calledOnce).to.be.true;
-    expect(cb.calledWith(0)).to.be.true;
   });
 });
