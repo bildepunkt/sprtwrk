@@ -2,3 +2,15 @@ howmanytimeswilliwritethis
 ==========================
 
 Yet another iteration of my <canvas /> game engine/library.
+
+### TODO
+* add clip to layers
+* add listenForInput flag to layers
+* add bitmap font support
+Ideas
+* add Audio module that takes sound assets (AssetManager) param
+* audio.play(String assetKey, Integer repeatCount, Float: volume) ?
+* scaffolding for tree > layer > entities
+* scene management - just seperate trees?
+* add layer cache back in from sprtwrk.git#master?
+* sublayers?
