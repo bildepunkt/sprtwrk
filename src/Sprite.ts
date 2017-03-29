@@ -6,7 +6,6 @@ import { assignArgs } from "./util";
  *  - add setMany(props: object)
  */
 export default class Sprite {
-
   protected alpha : number = 1;
   protected blendMode: string = "source-over";
   protected isVisible: boolean = true;

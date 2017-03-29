@@ -2,10 +2,9 @@ import Sprite from "./Sprite";
 
 /**
  * @TODO
- *  - add listensForInput
+ *  - add listensForInput: boolean
  */
 export default class Layer {
-
   private items: Sprite[] = [];
 
   constructor (...items: Sprite[]) {

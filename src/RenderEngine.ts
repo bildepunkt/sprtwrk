@@ -3,7 +3,6 @@ import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2D
 import HTMLCanvasElementMock from "../test/mocks/HTMLCanvasElementMock";
 
 export class RenderEngineDebugger {
-
   private doDebug: boolean;
 
   constructor (doDebug: boolean) {
@@ -33,17 +32,14 @@ export class RenderEngineDebugger {
  * @TODO
  */
 export default class RenderEngine {
-  
   private canvas: HTMLCanvasElement | HTMLCanvasElementMock;
   private context: CanvasRenderingContext2D | CanvasRenderingContext2DMock;
-  private doDebug: boolean = true;
   private debugger: RenderEngineDebugger;
 
   constructor (canvas: HTMLCanvasElement | HTMLCanvasElementMock, doDebug: boolean = true) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
-    this.doDebug = doDebug;
-    this.debugger = new RenderEngineDebugger(this.doDebug);
+    this.debugger = new RenderEngineDebugger(doDebug);
   }
 
   public clear(bgColor?: string): void {

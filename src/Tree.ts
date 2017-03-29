@@ -1,7 +1,6 @@
 import Layer from "./Layer";
 
 export default class Tree {
-
   private bgColor: string;
   private layers: Layer[] = [];
 

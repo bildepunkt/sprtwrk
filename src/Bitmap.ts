@@ -4,7 +4,6 @@ import CanvasPatternMock from "../test/mocks/CanvasPatternMock";
 import { assignArgs } from "./util";
 
 export default class Bitmap extends Sprite {
-
   protected image: HTMLImageElement = null;
   protected srcX: number = 0;
   protected srcY: number = 0;
