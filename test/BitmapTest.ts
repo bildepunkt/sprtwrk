@@ -8,7 +8,7 @@ describe("Bitmap", () => {
   let image;
 
   beforeEach(() => {
-    image = new HTMLImageElementMock("image");
+    image = new HTMLImageElementMock();
     image.width = 640;
     image.height = 480;
     image.src = "img/foo.jpg";
