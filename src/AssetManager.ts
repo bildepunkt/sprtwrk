@@ -1,21 +1,41 @@
 import { getObjectCount, xhrGet } from "./util";
 
+export class AssetManagerDebugger {
+  private doDebug: boolean;
+
+  constructor (doDebug: boolean) {
+    this.doDebug = doDebug;
+  }
+
+  public onLoad (type: string, path: string, loaded: number, count: number): void {
+    if (this.doDebug) {
+      console.log(`${type}: ${path} - ${loaded} / ${count} loaded`);
+    }
+  }
+}
+
 export default class AssetManager {
   private static loadedCount: number;
   private static totalCount: number;
   private static callback: Function;
+
+  private debugger: AssetManagerDebugger;
   private images: object = {};
   private audio: object = {};
   private json: object = {};
 
-  constructor (paths?: object, callback?: Function) {
+  constructor (paths?: object, callback?: Function, doDebug: boolean = true) {
     if (paths && callback) {
       this.load(paths, callback);
     }
+
+    this.debugger = new AssetManagerDebugger(doDebug);
   }
 
-  private onAssetLoad (): void {
+  private onAssetLoad (type: string, path: string): void {
     AssetManager.loadedCount++;
+
+    this.debugger.onLoad(type, path, AssetManager.loadedCount, AssetManager.totalCount);
 
     if (AssetManager.loadedCount === AssetManager.totalCount) {
       if (AssetManager.callback) {
@@ -36,27 +56,27 @@ export default class AssetManager {
         case "audio":
           asset = new Audio();
           asset.src = key;
-          asset.oncanplaythrough(() => {
+          asset.oncanplaythrough = () => {
             this.audio[key] = asset;
-            this.onAssetLoad();
-          });
+            this.onAssetLoad("audio", paths[key]);
+          };
           break;
         case "image":
           asset = new Image();
           asset.src = key;
-          asset.onload(() => {
+          asset.onload = () => {
             this.images[key] = asset;
-            this.onAssetLoad();
-          });
+            this.onAssetLoad("image", paths[key]);
+          };
           break;
         case "json":
-          xhrGet(paths[key], (data) => {
+          xhrGet(paths[key], (data: object) => {
             this.json[key] = asset;
-            this.onAssetLoad();
+            this.onAssetLoad("json", paths[key]);
           });
           break;
         default:
-          throw new Error(`asset type for "${key}" not supported`);
+          throw new Error(`asset type for "${paths[key]}" not supported`);
       }
     }
   }

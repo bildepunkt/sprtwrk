@@ -1,14 +1,14 @@
 import HTMLElementMock from "./HTMLElementMock";
 
 export default class HTMLAudioElementMock extends HTMLElementMock {
-
-  public src: string;
+  public oncanplaythrough: Function = null;
+  public src: string = null;
 
   constructor () {
     super("audio");
-  }
 
-  public oncanplaythrough (callback: Function): void {
-    callback();
+    setTimeout(() => {
+      this.oncanplaythrough();
+    }, 100);
   }
 }

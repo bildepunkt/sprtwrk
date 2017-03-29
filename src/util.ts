@@ -6,8 +6,8 @@ export function assignArgs (obj: object, args: any): void {
   }
 }
 
-export function xhrGet (path: string, callback: Function): void {
-  const xhr = new XMLHttpRequest();
+export function xhrGet (path: string, callback: (data: object) => void): void {
+  const xhr: XMLHttpRequest = new XMLHttpRequest();
   
   xhr.open('GET', path, true);
   xhr.onload = () => {
@@ -24,11 +24,5 @@ export function xhrGet (path: string, callback: Function): void {
 }
 
 export function getObjectCount (obj: any): number {
-  let count = 0;
-
-  for (let key in obj) {
-    count++;
-  }
-
-  return count;
+  return Object.keys(obj).length;
 }
