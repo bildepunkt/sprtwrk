@@ -7,17 +7,18 @@ import { expect } from "chai";
 import { spy } from "sinon";
 import "mocha";
 
-const noop = () => {
-  // does not a thing
-};
-console.group = noop;
-console.groupEnd = noop;
-console.groupCollapsed = noop;
-
 describe("RenderEngine", () => {
-  let canvas: HTMLCanvasElementMock, renderEngine: RenderEngine;
+  let canvas: HTMLCanvasElementMock, renderEngine: RenderEngine, logData: string;
+  const log = (msg: string): void => {
+    logData += `${msg}\n`;
+  };
 
-  beforeEach(function () {
+  console.group = log;
+  console.groupCollapsed = log;
+  console.groupEnd = () => null;
+
+  beforeEach(() => {
+    logData = "";
     canvas = new HTMLCanvasElementMock("canvas");
     canvas.width = 640;
     canvas.height = 480;
@@ -51,5 +52,11 @@ describe("RenderEngine", () => {
 
     expect(renderEngine.getContext().fillStyle).to.equal("chartruse");
     expect(fillRectSpy.calledWith(0, 0, 640, 480)).to.be.true;
+  });
+
+  xdescribe("debugger", () => {
+    it("logs tree in console", () => {
+
+    });
   });
 });

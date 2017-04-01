@@ -33,4 +33,8 @@ describe("Ticker", () => {
     manualRafTick();
     expect(cb.calledOnce).to.be.true;
   });
+
+  xit("doesn't execute callback when cancelled", () => {
+
+  });
 });
