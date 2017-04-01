@@ -10,7 +10,7 @@ const sprite1 = new Sprite();
 const sprite2 = new Sprite();
 const layer1 = new Layer(sprite1, sprite2);
 const layer2 = new Layer(sprite1, sprite2);
-const tree = new Tree("", layer1, layer2);
-const renderEngine = new RenderEngine(canvas, context);
+const tree = new Tree("deepskyblue", layer1, layer2);
+const renderEngine = new RenderEngine(canvas);
 
 renderEngine.render(tree);

@@ -2,13 +2,14 @@ import Sprite from "./Sprite";
 
 /**
  * @TODO
- *  - add listensForInput: boolean
  */
 export default class Layer {
-  private items: Sprite[] = [];
+  private items: Sprite[];
+  private listenForInput: boolean;
 
-  constructor (...items: Sprite[]) {
+  constructor (items: Sprite[] = [], listenForInput: boolean = true) {
     this.items = items;
+    this.listenForInput = listenForInput;
   }
 
   public add (...items: Sprite[]) {
@@ -25,7 +26,7 @@ export default class Layer {
     }
   }
 
-  public remove (...items): void {
+  public remove (...items: Sprite[]): void {
     items.forEach(item => {
       const removeeIndex: number = this.getIndex(item);
       this.items.splice(removeeIndex, 1);
