@@ -1,5 +1,4 @@
 import HTMLElementMock from "../test/mocks/HTMLElementMock";
-import HTMLCanvasElementMock from "../test/mocks/HTMLCanvasElementMock";
 
 /**
  * @interface ViewportOptions
@@ -19,31 +18,33 @@ export default class Viewport {
 
   constructor(width: number = 800,
               height: number = 600,
-              parent: HTMLElement | HTMLBodyElement | HTMLElementMock = document.body,
+              parent: HTMLElement | HTMLBodyElement = document.body,
               options: ViewportOptions = {}) {
 
     this.width = width;
     this.height = height;
 
-    this.createCanvas("view", parent);
+    this.createCanvas("main", parent);
 
     for (let key in options) {
-      this[key] = options[key];
+      if (options.hasOwnProperty(key)) {
+        this[key] = options[key];
+      }
     }
   }
 
-  private createCanvas (id: string, parent: HTMLElement | HTMLBodyElement | HTMLElementMock): void  {
-    const canvas: HTMLCanvasElement | HTMLCanvasElementMock = document.createElement("canvas");
-    canvas.id = id;
-    canvas.width = this.width;
-    canvas.height = this.height;
-    canvas.style.position = "absolute";
-    canvas.style.left = "0";
-    canvas.style.top = "0";
+  private createCanvas (id: string, parent: HTMLElement | HTMLBodyElement): void  {
+    this.canvas = document.createElement("canvas");
+    this.canvas.id = id;
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+    this.canvas.style.position = "absolute";
+    this.canvas.style.left = "0";
+    this.canvas.style.top = "0";
 
-    parent.appendChild(canvas);
+    parent.appendChild(this.canvas);
 
-    this.context = canvas.getContext("2d");
+    this.context = this.canvas.getContext("2d");
   }
 
   private setImageSmoothing (context: CanvasRenderingContext2D, val: boolean): void {

@@ -1,6 +1,4 @@
 import Tree from "./Tree";
-import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
-import HTMLCanvasElementMock from "../test/mocks/HTMLCanvasElementMock";
 
 export class RenderEngineDebugger {
   private doDebug: boolean;
@@ -32,19 +30,19 @@ export class RenderEngineDebugger {
  * @TODO
  */
 export default class RenderEngine {
-  private canvas: HTMLCanvasElement | HTMLCanvasElementMock;
-  private context: CanvasRenderingContext2D | CanvasRenderingContext2DMock;
+  private canvas: HTMLCanvasElement;
+  private context: CanvasRenderingContext2D;
   private debugger: RenderEngineDebugger;
 
-  constructor (canvas: HTMLCanvasElement | HTMLCanvasElementMock, doDebug: boolean = true) {
+  constructor (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, doDebug: boolean = true) {
     this.canvas = canvas;
-    this.context = canvas.getContext("2d");
+    this.context = context;
     this.debugger = new RenderEngineDebugger(doDebug);
   }
 
   public clear(bgColor?: string): void {
-    const canvas: HTMLCanvasElement | HTMLCanvasElementMock = this.canvas;
-    const context: CanvasRenderingContext2D | CanvasRenderingContext2DMock = this.context;
+    const canvas: HTMLCanvasElement = this.canvas;
+    const context: CanvasRenderingContext2D = this.context;
 
     if (bgColor) {
       context.fillStyle = bgColor;
@@ -55,7 +53,7 @@ export default class RenderEngine {
   }
 
   public render (tree: Tree): void {
-    const context = this.context;
+    const context: CanvasRenderingContext2D = this.context;
 
     this.debugger.render(tree);
     this.clear(tree.getBgColor());
@@ -74,7 +72,7 @@ export default class RenderEngine {
     this.context.restore();
   }
 
-  public getContext (): CanvasRenderingContext2D | CanvasRenderingContext2DMock {
+  public getContext (): CanvasRenderingContext2D {
     return this.context;
   }
 }

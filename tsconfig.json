@@ -4,5 +4,9 @@
     "outDir": "./play",
     "target": "es5",
     "sourceMap": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "test"
+  ]
 }
