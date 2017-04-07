@@ -1,14 +1,24 @@
 import Bitmap from "../src/Bitmap";
-import HTMLImageElementMock from "./mocks/HTMLImageElementMock";
 import { expect } from "chai";
 //import { spy } from "sinon";
 import "mocha";
+
+const document = {
+  createElement (type) {
+    return {
+      type,
+      width: 0,
+      height: 0,
+      src: ""
+    };
+  }
+};
 
 describe("Bitmap", () => {
   let image;
 
   beforeEach(() => {
-    image = new HTMLImageElementMock();
+    image = document.createElement("image");
     image.width = 640;
     image.height = 480;
     image.src = "img/foo.jpg";

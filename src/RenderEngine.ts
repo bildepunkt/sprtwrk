@@ -1,5 +1,8 @@
 import Tree from "./Tree";
 
+/**
+ * @class RenderEngineDebugger
+ */
 export class RenderEngineDebugger {
   private doDebug: boolean;
 
@@ -27,7 +30,7 @@ export class RenderEngineDebugger {
 }
 
 /**
- * @TODO
+ * @class RenderEngine
  */
 export default class RenderEngine {
   private canvas: HTMLCanvasElement;

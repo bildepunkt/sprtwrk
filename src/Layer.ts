@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 /**
- * @TODO
+ * @class Layer
  */
 export default class Layer {
   private items: Sprite[];

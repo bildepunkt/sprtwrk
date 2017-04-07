@@ -1,8 +1,8 @@
-import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
 import { assignArgs } from "./util";
 
 /**
- * @TODO
+ * @class Sprite
+ * @todo
  *  - add setMany(props: object)
  */
 export default class Sprite {
@@ -26,7 +26,7 @@ export default class Sprite {
     this.uid = Sprite.uidCounter++;
   }
 
-  public render (context: CanvasRenderingContext2D | CanvasRenderingContext2DMock): void {
+  public render (context: CanvasRenderingContext2D): void {
     context.translate(this.x, this.y);
     context.rotate(this.rotation * Math.PI / 180);
     context.scale(this.scaleX, this.scaleY);

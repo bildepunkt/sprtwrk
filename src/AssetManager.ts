@@ -1,5 +1,8 @@
 import { getObjectCount, xhrGet } from "./util";
 
+/**
+ * @class AssetManagerDebugger
+ */
 export class AssetManagerDebugger {
   private doDebug: boolean;
 
@@ -14,6 +17,9 @@ export class AssetManagerDebugger {
   }
 }
 
+/**
+ * @class AssetManager
+ */
 export default class AssetManager {
   private static loadedCount: number;
   private static totalCount: number;
@@ -54,7 +60,7 @@ export default class AssetManager {
 
       switch (this.getType(paths[key])) {
         case "audio":
-          asset = new Audio();
+          asset = document.createElement("audio");
           asset.src = key;
           asset.oncanplaythrough = () => {
             this.audio[key] = asset;
@@ -62,7 +68,7 @@ export default class AssetManager {
           };
           break;
         case "image":
-          asset = new Image();
+          asset = document.createElement("image");
           asset.src = key;
           asset.onload = () => {
             this.images[key] = asset;

@@ -1,13 +1,19 @@
 import AssetManager from "../src/AssetManager";
-import HTMLImageElementMock from "./mocks/HTMLImageElementMock";
-import HTMLAudioElementMock from "./mocks/HTMLAudioElementMock";
 import { spy, useFakeTimers, SinonFakeTimers, SinonSpy } from "sinon";
 import { expect } from "chai";
 
-declare const global: any;
+declare let global: any;
 
-global.Audio = HTMLAudioElementMock;
-global.Image = HTMLImageElementMock;
+global.document = {
+  createElement (type) {
+    return {
+      type,
+      width: 0,
+      height: 0,
+      src: ""
+    };
+  }
+};
 
 describe("AssetManager", function () {
   let assetManager: AssetManager;

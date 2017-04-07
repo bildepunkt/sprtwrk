@@ -5,7 +5,7 @@ import "mocha";
 
 describe("Layer", () => {
   it("instantiates with constructor params", () => {
-    const layer = new Layer(new Sprite(), new Sprite(), new Sprite());
+    const layer = new Layer([new Sprite(), new Sprite(), new Sprite()]);
 
     expect(layer.getItems().length).to.equal(3);
   });
@@ -23,7 +23,7 @@ describe("Layer", () => {
     const s1 = new Sprite();
     const s2 = new Sprite();
     const s3 = new Sprite();
-    const layer = new Layer(s1, s2, s3);
+    const layer = new Layer([s1, s2, s3]);
 
     expect(layer.getAt(0).getUid()).to.equal(s1.getUid());
     expect(layer.getAt(1).getUid()).to.equal(s2.getUid());
@@ -35,7 +35,7 @@ describe("Layer", () => {
     const s2 = new Sprite();
     const s3 = new Sprite();
     const s4 = new Sprite();
-    const layer = new Layer(s1, s2, s3, s4);
+    const layer = new Layer([s1, s2, s3, s4]);
 
     layer.remove(s2);
     expect(layer.getCount()).to.equal(3);

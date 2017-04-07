@@ -1,5 +1,4 @@
 import Sprite from "../src/Sprite";
-import CanvasRenderingContext2DMock from "./mocks/CanvasRenderingContext2DMock";
 import { expect } from "chai";
 import { spy } from "sinon";
 import "mocha";
@@ -31,7 +30,7 @@ describe("Sprite", () => {
 
   it("properly interacts with, and modifies, the render context", function () {
     var sprite = new Sprite();
-    var context = new CanvasRenderingContext2DMock();
+    var context = new CanvasRenderingContext2D();
 
     sprite.setX(32);
     sprite.setY(32);

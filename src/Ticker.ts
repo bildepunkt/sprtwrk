@@ -1,3 +1,6 @@
+/**
+ * @class Ticker
+ */
 export default class Ticker {
   private callback: (delta: number) => undefined;
   private canTick: boolean = true;

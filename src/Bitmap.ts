@@ -1,6 +1,4 @@
 import Sprite from "./Sprite";
-import CanvasRenderingContext2DMock from "../test/mocks/CanvasRenderingContext2DMock";
-import CanvasPatternMock from "../test/mocks/CanvasPatternMock";
 import { assignArgs } from "./util";
 
 export default class Bitmap extends Sprite {
@@ -12,7 +10,7 @@ export default class Bitmap extends Sprite {
   protected width: number = null;
   protected height: number = null;
   protected tiling: string = "no-repeat";
-  protected pattern: CanvasPattern | CanvasPatternMock = null;
+  protected pattern: CanvasPattern = null;
 
   constructor (args: object = {}) {
     super(args);
@@ -24,7 +22,7 @@ export default class Bitmap extends Sprite {
     this.srcHeight = this.srcHeight || this.height;
   }
 
-  render (context: CanvasRenderingContext2D | CanvasRenderingContext2DMock): void {
+  render (context: CanvasRenderingContext2D): void {
     super.render(context);
 
     if (this.tiling !== "no-repeat") {

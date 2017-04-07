@@ -2,13 +2,12 @@ import RenderEngine from "../src/RenderEngine";
 import Sprite from "../src/Sprite";
 import Layer from "../src/Layer";
 import Tree from "../src/Tree";
-import HTMLCanvasElementMock from "./mocks/HTMLCanvasElementMock";
 import { expect } from "chai";
 import { spy } from "sinon";
 import "mocha";
 
 describe("RenderEngine", () => {
-  let canvas: HTMLCanvasElementMock, renderEngine: RenderEngine, logData: string;
+  let canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, renderEngine: RenderEngine, logData: string;
   const log = (msg: string): void => {
     logData += `${msg}\n`;
   };
@@ -19,10 +18,11 @@ describe("RenderEngine", () => {
 
   beforeEach(() => {
     logData = "";
-    canvas = new HTMLCanvasElementMock("canvas");
+    canvas = document.createElement("canvas");
+    context = canvas.getContext("2d");
     canvas.width = 640;
     canvas.height = 480;
-    renderEngine = new RenderEngine(canvas, false);
+    renderEngine = new RenderEngine(canvas, context, false);
   });
 
   it("renders a tree with 1 layer that contains 1 sprite", () => {
@@ -30,7 +30,7 @@ describe("RenderEngine", () => {
     const restoreSpy = spy(renderEngine.getContext(), "restore");
     const sprite = new Sprite();
     const spriteRenderSpy = spy(sprite, "render");
-    const layer = new Layer(sprite);
+    const layer = new Layer([sprite]);
     const tree = new Tree("#c0ffee", layer);
 
     renderEngine.render(tree);

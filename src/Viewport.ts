@@ -1,5 +1,3 @@
-import HTMLElementMock from "../test/mocks/HTMLElementMock";
-
 /**
  * @interface ViewportOptions
  */
