@@ -63,6 +63,7 @@ export default class AssetManager {
           asset = document.createElement("audio");
           asset.src = key;
           asset.oncanplaythrough = () => {
+            console.log("<==============>");
             this.audio[key] = asset;
             this.onAssetLoad("audio", paths[key]);
           };
@@ -71,6 +72,7 @@ export default class AssetManager {
           asset = document.createElement("image");
           asset.src = key;
           asset.onload = () => {
+            console.log("<==============>");
             this.images[key] = asset;
             this.onAssetLoad("image", paths[key]);
           };

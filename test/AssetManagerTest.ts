@@ -1,19 +1,11 @@
 import AssetManager from "../src/AssetManager";
+import document from "./mocks/document";
 import { spy, useFakeTimers, SinonFakeTimers, SinonSpy } from "sinon";
 import { expect } from "chai";
 
 declare let global: any;
 
-global.document = {
-  createElement (type) {
-    return {
-      type,
-      width: 0,
-      height: 0,
-      src: ""
-    };
-  }
-};
+global.document = document;
 
 describe("AssetManager", function () {
   let assetManager: AssetManager;

@@ -1,18 +1,8 @@
 import Bitmap from "../src/Bitmap";
+import document from "./mocks/document";
 import { expect } from "chai";
 //import { spy } from "sinon";
 import "mocha";
-
-const document = {
-  createElement (type) {
-    return {
-      type,
-      width: 0,
-      height: 0,
-      src: ""
-    };
-  }
-};
 
 describe("Bitmap", () => {
   let image;

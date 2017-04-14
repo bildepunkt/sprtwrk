@@ -16,6 +16,32 @@ export default class Layer {
     this.items.push(...items);
   }
 
+  // public addAt (item: Sprite, index: number) {
+
+  // }
+
+  public each (fn: Function, scope?: any): boolean {
+    let doContinue = true;
+
+    fn = scope ? fn.bind(scope) : fn;
+
+    for (let i = 0, len = this.items.length; i < len; i++) {
+      const item = this.items[i];
+
+      if (item instanceof Layer) {
+        this.each(fn, scope);
+      } else {
+        doContinue = fn(item, i, this.items);
+      }
+
+      if (doContinue === false) {
+        break;
+      }
+    }
+
+    return doContinue;
+  }
+
   private getIndex (item: Sprite): number {
     for (var index = 0, len = this.items.length; index < len; index++) {
       const element: Sprite = this.items[index];

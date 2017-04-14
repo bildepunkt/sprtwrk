@@ -2,12 +2,13 @@ import RenderEngine from "../src/RenderEngine";
 import Sprite from "../src/Sprite";
 import Layer from "../src/Layer";
 import Tree from "../src/Tree";
+import document from "./mocks/document";
 import { expect } from "chai";
 import { spy } from "sinon";
 import "mocha";
 
 describe("RenderEngine", () => {
-  let canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, renderEngine: RenderEngine, logData: string;
+  let canvas, context, renderEngine: RenderEngine, logData: string;
   const log = (msg: string): void => {
     logData += `${msg}\n`;
   };

@@ -1,8 +1,7 @@
 {
-  "name": "testing-ts",
+  "name": "spritewerk",
   "version": "0.1.0",
   "description": "Yet another iteration of my <canvas /> game engine/library",
-  "main": "",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha -r ts-node/register ./test/**/*Test.ts",
     "play-bundle": "./node_modules/webpack/bin/webpack.js",

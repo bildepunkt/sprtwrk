@@ -12,6 +12,20 @@ export default class Tree {
     this.layers = layers;
   }
 
+  public each (fn: Function, scope?: any): void {
+    let doContinue = true;
+
+    for (let i = 0, len = this.layers.length; i < len; i++) {
+      const layer = this.layers[i];
+      
+      doContinue = layer.each(fn, scope);
+
+      if (doContinue === false) {
+        break;
+      }
+    }
+  }
+
   public getBgColor (): string {
     return this.bgColor;
   }
@@ -27,4 +41,5 @@ export default class Tree {
   public getLayers (): Layer[] {
     return this.layers;
   }
+  
 }
